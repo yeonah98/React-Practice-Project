@@ -9,6 +9,8 @@ function App() {
   return (
     <div className="container">
       <h1>Hello World!</h1>
+      <Clock></Clock>
+      {/* <Update></Update> */}
        <input type="button" value="remove func" onClick={function(){
          setFuncShow(false);
        }}></input>
@@ -121,6 +123,51 @@ class ClassComp extends React.Component{
       </div>
     )
   }
+}
+
+
+function Update() {
+  var appdata = (new Date()).toLocaleTimeString();
+
+  return(
+    <div>
+      <h2>
+      여기는 App 안 : {appdata}
+       </h2>
+    </div>
+  );
+}
+
+function Clock() {
+  var [date, setDate] = useState((new Date()).toLocaleTimeString());
+  //var otherdate = (new Date()).toLocaleTimeString();
+
+  // setInterval( () => {
+  //   setDate((new Date()).toLocaleTimeString());
+  //   //date = (new Date()).toLocaleTimeString();
+  //   otherdate = (new Date()).toLocaleTimeString();
+  // }, 1000);
+  // // console.log('No useEffect');
+
+  useEffect(function(){
+    setInterval( () => {
+      setDate((new Date()).toLocaleTimeString());
+      //otherdate = (new Date()).toLocaleTimeString();
+      //console.log('인터벌');
+    }, 1000);
+    //console.log('인터벌 밖');
+  },[]);
+
+  return(
+    <div>
+      <h2>
+        현재 시각은 {date}입니다.
+      </h2>
+      {/* <h2>
+        여기는 Clock 안 : {otherdate}.
+      </h2> */}
+    </div>
+  );
 }
 
 export default App;
